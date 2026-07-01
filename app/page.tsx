@@ -651,7 +651,7 @@ export default function HomePage() {
                     color: "#f59e0b",
                     backgroundColor: "#ffffff",
                     fontSize: "12px",
-                    borderRadius: "6px"
+                    borderRadius: "24px"
                   } : undefined}>{i === 0 ? "Lumière ha transformado mi guardarropa por completo. La calidad de cada pieza es excepcional y el servicio al cliente es impecable.1234" : t.text}</p>
                 <div
                   className="flex items-center gap-3 pt-2 border-t border-black/5"
