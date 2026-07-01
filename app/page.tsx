@@ -649,7 +649,7 @@ export default function HomePage() {
                   data-atomic-instance={i}
                   style={i === 1 ? {
                     color: "#f59e0b",
-                    backgroundColor: "#000000",
+                    backgroundColor: "#ffffff",
                     fontSize: "12px",
                     borderRadius: "6px"
                   } : undefined}>{i === 0 ? "Lumière ha transformado mi guardarropa por completo. La calidad de cada pieza es excepcional y el servicio al cliente es impecable.1234" : t.text}</p>
