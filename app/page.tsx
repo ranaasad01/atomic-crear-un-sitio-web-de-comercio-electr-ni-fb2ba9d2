@@ -417,7 +417,7 @@ export default function HomePage() {
                 <div
                   className="absolute inset-0 bg-gradient-to-t from-[#1a1a2e]/40 via-transparent to-transparent"
                   data-atomic-id="a15uem78"
-                  src="https://titoaistorageaccount.blob.core.windows.net/titoai-storage/fb2ba9d2-54a7-49be-8983-7efd164729a4/images/uploaded-1782909500480-7yt1be.png?v=1782909501740" />
+                  src="https://titoaistorageaccount.blob.core.windows.net/titoai-storage/fb2ba9d2-54a7-49be-8983-7efd164729a4/images/uploaded-1782909577107-fybxvx.png?v=1782909578178" />
               </div>
 
               {/* Floating badge */}
