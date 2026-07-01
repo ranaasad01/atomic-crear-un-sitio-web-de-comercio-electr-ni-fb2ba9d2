@@ -103,35 +103,42 @@ export default function Navbar() {
               >
                 <User size={18} />
               </button>
-              <button
-                className="relative p-2 rounded-full text-[#1a1a2e]/60 hover:text-[#1a1a2e] hover:bg-black/5 transition-all duration-200"
-                aria-label="Carrito de compras"
+              <Link
+                href="/cart"
+                className="relative p-2 text-[#1a1a2e]/70 hover:text-[#e94560] transition-colors duration-200"
+                aria-label="Carrito"
               >
-                <ShoppingBag size={18} />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-[#e94560] rounded-full" />
-              </button>
+                <ShoppingBag size={20} />
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#e94560] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                  0
+                </span>
+              </Link>
               <Link
                 href={getHref(navCTA.href)}
                 onClick={(e) => handleNavClick(e, navCTA.href)}
-                className="ml-2 px-5 py-2 bg-[#e94560] text-white text-sm font-semibold rounded-full hover:bg-[#c73652] transition-all duration-300 shadow-[0_4px_14px_rgba(233,69,96,0.35)] hover:shadow-[0_6px_20px_rgba(233,69,96,0.45)] hover:-translate-y-0.5"
+                className="ml-2 px-5 py-2 bg-[#1a1a2e] text-white text-sm font-semibold rounded-full hover:bg-[#e94560] transition-all duration-300 shadow-sm"
               >
                 {navCTA.label}
               </Link>
             </div>
 
-            {/* Mobile Actions */}
+            {/* Mobile: cart + hamburger */}
             <div className="flex md:hidden items-center gap-2">
-              <button
-                className="relative p-2 rounded-full text-[#1a1a2e]/60 hover:text-[#1a1a2e]"
+              <Link
+                href="/cart"
+                className="relative p-2 text-[#1a1a2e]/70 hover:text-[#e94560] transition-colors duration-200"
                 aria-label="Carrito"
               >
                 <ShoppingBag size={20} />
-                <span className="absolute top-1 right-1 w-2 h-2 bg-[#e94560] rounded-full" />
-              </button>
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-[#e94560] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                  0
+                </span>
+              </Link>
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="p-2 rounded-full text-[#1a1a2e]/70 hover:text-[#1a1a2e] hover:bg-black/5 transition-all duration-200"
                 aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+                aria-expanded={isOpen}
               >
                 {isOpen ? <X size={22} /> : <Menu size={22} />}
               </button>
@@ -146,20 +153,20 @@ export default function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
+              transition={{ duration: 0.25 }}
               className="overflow-hidden border-t border-black/5 bg-white/95 backdrop-blur-md"
             >
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-                <div className="relative">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                <div className="relative max-w-xl mx-auto">
                   <Search
                     size={16}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 text-[#1a1a2e]/40"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 text-[#1a1a2e]/40"
                   />
                   <input
                     type="search"
-                    placeholder="Buscar productos, marcas, categorías..."
+                    placeholder="Buscar productos, categorías…"
                     autoFocus
-                    className="w-full pl-9 pr-4 py-2.5 text-sm bg-[#f5f5f5] rounded-full border border-transparent focus:border-[#e94560]/30 focus:outline-none focus:ring-2 focus:ring-[#e94560]/10 transition-all duration-200"
+                    className="w-full pl-10 pr-4 py-3 rounded-full bg-[#f5f5f5] border border-transparent focus:border-[#e94560]/30 focus:ring-2 focus:ring-[#e94560]/10 text-sm text-[#1a1a2e] placeholder-[#1a1a2e]/40 outline-none transition-all duration-200"
                   />
                 </div>
               </div>
@@ -171,75 +178,49 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm md:hidden"
-              onClick={() => setIsOpen(false)}
-            />
-            <motion.nav
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-white shadow-2xl md:hidden flex flex-col"
-              aria-label="Menú móvil"
-            >
-              <div className="flex items-center justify-between px-6 h-16 border-b border-black/5">
-                <span className="font-playfair text-xl font-bold text-[#1a1a2e]">
-                  Menú
-                </span>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-full hover:bg-black/5 transition-colors"
-                  aria-label="Cerrar menú"
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-x-0 top-16 z-40 bg-white/98 backdrop-blur-md shadow-xl border-t border-black/5 md:hidden"
+          >
+            <nav className="max-w-7xl mx-auto px-4 py-6 flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={getHref(link.href)}
+                  onClick={(e) => {
+                    handleNavClick(e, link.href);
+                    setIsOpen(false);
+                  }}
+                  className="px-4 py-3 text-base font-medium text-[#1a1a2e]/80 hover:text-[#e94560] hover:bg-[#e94560]/5 rounded-xl transition-all duration-200"
                 >
-                  <X size={20} />
-                </button>
-              </div>
-              <div className="flex-1 overflow-y-auto py-6 px-6 space-y-1">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={getHref(link.href)}
-                    onClick={(e) => {
-                      handleNavClick(e, link.href);
-                      setIsOpen(false);
-                    }}
-                    className="flex items-center px-4 py-3 rounded-xl text-[#1a1a2e]/80 hover:text-[#1a1a2e] hover:bg-[#f5f5f5] font-medium transition-all duration-200"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-              <div className="px-6 pb-8 pt-4 border-t border-black/5">
+                  {link.label}
+                </Link>
+              ))}
+              <Link
+                href="/cart"
+                onClick={() => setIsOpen(false)}
+                className="px-4 py-3 text-base font-medium text-[#1a1a2e]/80 hover:text-[#e94560] hover:bg-[#e94560]/5 rounded-xl transition-all duration-200 flex items-center gap-2"
+              >
+                <ShoppingBag size={18} />
+                Carrito
+              </Link>
+              <div className="mt-4 pt-4 border-t border-black/5">
                 <Link
                   href={getHref(navCTA.href)}
                   onClick={(e) => {
                     handleNavClick(e, navCTA.href);
                     setIsOpen(false);
                   }}
-                  className="block w-full text-center px-5 py-3 bg-[#e94560] text-white font-semibold rounded-full hover:bg-[#c73652] transition-all duration-300 shadow-[0_4px_14px_rgba(233,69,96,0.35)]"
+                  className="block w-full text-center px-6 py-3 bg-[#1a1a2e] text-white font-semibold rounded-full hover:bg-[#e94560] transition-all duration-300"
                 >
                   {navCTA.label}
                 </Link>
-                <div className="flex items-center justify-center gap-4 mt-4">
-                  <button className="p-2 rounded-full text-[#1a1a2e]/60 hover:text-[#1a1a2e] hover:bg-black/5 transition-all" aria-label="Buscar">
-                    <Search size={18} />
-                  </button>
-                  <button className="p-2 rounded-full text-[#1a1a2e]/60 hover:text-[#1a1a2e] hover:bg-black/5 transition-all" aria-label="Favoritos">
-                    <Heart size={18} />
-                  </button>
-                  <button className="p-2 rounded-full text-[#1a1a2e]/60 hover:text-[#1a1a2e] hover:bg-black/5 transition-all" aria-label="Mi cuenta">
-                    <User size={18} />
-                  </button>
-                </div>
               </div>
-            </motion.nav>
-          </>
+            </nav>
+          </motion.div>
         )}
       </AnimatePresence>
     </>
