@@ -646,7 +646,13 @@ export default function HomePage() {
                 <p
                   className="text-gray-600 leading-relaxed text-sm text-pretty flex-1"
                   data-atomic-id="au3boxt"
-                  data-atomic-instance={i}>{i === 0 ? "Lumière ha transformado mi guardarropa por completo. La calidad de cada pieza es excepcional y el servicio al cliente es impecable.1234" : t.text}</p>
+                  data-atomic-instance={i}
+                  style={i === 1 ? {
+                    color: "#f59e0b",
+                    backgroundColor: "#000000",
+                    fontSize: "12px",
+                    borderRadius: "6px"
+                  } : undefined}>{i === 0 ? "Lumière ha transformado mi guardarropa por completo. La calidad de cada pieza es excepcional y el servicio al cliente es impecable.1234" : t.text}</p>
                 <div
                   className="flex items-center gap-3 pt-2 border-t border-black/5"
                   data-atomic-id="apd6qt2"
